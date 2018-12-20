@@ -1,0 +1,43 @@
+<h1>Search Yelp for food!</h1>
+<form (ngSubmit)="onSubmit(price, location)">
+  <label for="price">Price</label>
+    <select
+      [(ngModel)]="price"
+      name="price"
+      required>
+    
+      <option value="1">$</option>
+      <option value="2">$$</option>
+      <option value="3">$$$</option>
+      <option value="4">$$$$</option>
+    </select>
+
+  <label for="location">Zip Code or City, State</label>
+
+    <input
+      [(ngModel)]="location"
+      type="text"
+      name="location"
+      required>
+
+    <br />
+    <button type="Submit" value="submit"> Submit </button> 
+</form>
+<div *ngIf="response">
+  <img class="image" src="{{ response.businesses[0].image_url}}">
+  <h1>Restaurant: {{ response.businesses[0].name | json }}</h1>
+  <h2>Address: {{ response.businesses[0].location.display_address | json}}</h2>
+  <h3>Phone: {{ response.businesses[0].display_phone | json}}</h3>
+  <div *ngIf="response.businesses[0].rating == 0"><img src="../../assets/regular_0@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 1"><img src="../../assets/regular_1@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 1.5"><img src="../../assets/regular_1_half@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 2"><img src="../../assets/regular_2@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 2.5"><img src="../../assets/regular_2_half@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 3"><img src="../../assets/regular_3@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 3.5"><img src="../../assets/regular_3_half@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 4"><img src="../../assets/regular_4@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 4.5"><img src="../../assets/regular_4_half@2x.png"></div>
+  <div *ngIf="response.businesses[0].rating == 5"><img src="../../assets/regular_5@2x.png"></div>
+  {{response.delivery}}
+  <!-- <div *ngIf="response.businesses[0].transactions.indexOf == includes('delivery')">Delivery available</div>" -->
+</div>
